@@ -1,5 +1,6 @@
 package com.example.primerproyectodam2026
 
+import Socio
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -12,6 +13,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class MenuActivity : AppCompatActivity() {
+
+    val listaSocios = mutableListOf<Socio>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
@@ -32,6 +36,15 @@ class MenuActivity : AppCompatActivity() {
                 .setView(vista)
                 .setPositiveButton("Guardar") { _, _ ->
                     val nombreToString = etNombre.text.toString()
+                    val dniToString = etDni.text.toString()
+
+                    val socio = Socio(nombreToString, dniToString)
+
+                    listaSocios.add(socio)
+
+                    for(s in listaSocios){
+                       println("${s.nombre} - ${s.dni}")
+                    }
 
                     Toast.makeText(this, "Socio: $nombreToString", Toast.LENGTH_LONG)
                         .show()
